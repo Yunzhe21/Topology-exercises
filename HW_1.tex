@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}    
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+
+
+\begin{document}
+\noindent Topology \hfill Assignment 1\\
+Yunzhe Zheng. (2025/02/08)
+
+\hrulefill
+
+\begin{problem}
+Let $X$ be a nonempty set. Suppose that there exists a function $d: X\times X\to \mathbb{R}_{+}$ which satisfies the separation and symmetry properties of being a metric, and in addition, has the property that $d(x,y)\geq d(x,z)+d(z,y)$ for every $x,y,z\in X$. Show that $X$ must then be a singleton.
+\end{problem}
+
+\textbf{Proof:} For $x,y\in X$, by assumption we have $0 = d(x,x)\geq d(x,y)+d(y,x)=2d(x,y)$, which implies that $d(x, y)=0\iff x=y$. Thus it must be a singleton. \qed \\
+
+\begin{problem}
+Let $X$ be a nonempty set and $d: X\times X\to\mathbb{R}_{+}$ a function which satisfies the separation and symmetry properties of being a metric, and in addition, has the property that $d(x,y)\leq \max\{d(x,z), d(z, y)\}$ for every $x,y,z\in X$. Such a function is said to be an ultrametric on $X$, and when $d$ is an ultrametric on X, we refer to $(X,d)$ as an ultrametric space. Clearly, every ultrametric space is a metric space. Give an example to show that the converse of this is false.
+\end{problem}
+
+\textbf{Proof:} Consider the $\mathbb{R}^{2}$ space with Euclidean metric, then $\sqrt{2}=d((0, 0), (1, 1))\leq d((0, 0), (1, 0))+d((1, 1), (1, 0))=2$. However, $\sqrt{2}=d((0, 0), (1, 1))>\max\{d((0, 0), (1, 0)), \\
+d((1, 1), (1, 0))\}=1$. \qed \\
+
+\begin{problem}
+Let $X$ be a nonempty set. For any distinct $x$ and $y$ in $X^{\infty}$, let $k(x,y)$ be the first term at which the sequence $x$ and $y$ differ. Consider the function $d: X^{\infty}\times X^{\infty}\to\mathbb{R}_{+}$ defined by $d(x,y):= \frac{1}{k(x,y)}$ for every distinct $x,y\in X^{\infty}$, and by $d(x,x):= 0$ for every $x\in X^{\infty}$. Show that $d$ is an ultrametric on $X^{\infty}$.
+\end{problem}
+
+\textbf{Proof:} The separation and symmetry properties automatically hold by the definition of $k(x,y)$. For $x, y, z\in X^{\infty}$, suppose $k(x, y) = k$. First case is that $k' = k(x,z)\leq k$, which means that $k(y, z)=k'\leq k$, then $d(x,y)=\frac{1}{k(x, y)}\leq \frac{1}{k'}=d(x, z)=d(y, z)=\max\{d(x, z), d(y, z)\}$. The second case is that $k(x, z) > k$, then we claim that $k(y, z)\leq k$, because otherwise, at least for $i = k$, $x_{i}=z_{i}=y_{i}$, which contradict the fact that $k=k(x, y)$ is the smallest term where $x,y$ differs. Thus $d(x,y)=\frac{1}{k(x,y)}\leq\frac{1}{k(y, z)}=\max\{d(x, z), d(y, z)\}$. In conclusion, $d$ is an ultrametric on $X^{\infty}$.\qed \\
+
+\begin{problem}
+Let $X$ be an ultrametric space, and take any $x\in X$ and $\epsilon >0$. Show that if $y\in B(x, \epsilon)$, then $B(y,\epsilon)=B(x, \epsilon)$. (So, an open ball in an ultrametric space may have several centers) Also show that if $B(x,\epsilon_{1})$ and $B(y,\epsilon_{2})$ overlaps for some $\epsilon_{1}, \epsilon_{2}>0$, then either $B(x, \epsilon_{1})$ is contained in $B(y,\epsilon_{2})$ or vice versa.
+\end{problem}
+
+\textbf{Proof:} Suppose $z\in B(y, \epsilon)$, then $d(z, x)\leq \max\{d(z,y), d(x, y)\}<\epsilon$, the last inequality is given by the fact that $y\in B(x,\epsilon)$. Thus $B(y, \epsilon)\subset B(x,\epsilon)$. $B(x,\epsilon)\subset B(y,\epsilon)$ is given by exact same argument, hence $B(x,\epsilon)=B(y,\epsilon)$. \\
+\indent Now, without loss of generality, we assume that $\epsilon_{1}>\epsilon_{2}$. For $z\in B(x,\epsilon_{1})\cap B(y,\epsilon_{2})$, we have $d(x,z)<\epsilon_{1}$ and $d(y,z)<\epsilon_{2}$, then $d(x,y)\leq\max\{d(x, z), d(y, z)\}<\epsilon_{1}$, which means that $y\in B(x,\epsilon_{1})$. By our previous result, $B(y,\epsilon_{1})=B(x,\epsilon_{1})$, then $B(y, \epsilon_{2})\subset B(y, \epsilon_{1})=B(x,\epsilon_{1})$. \qed \\
+
+\begin{problem}
+Let $X$ be an ultrametric space, and take any $x\in X$ and $\epsilon >0$. Show that $B(x,\epsilon)$ is clopen, and conclude that $\partial B(x,\epsilon)=\emptyset$.
+\end{problem}
+
+\textbf{Proof:} Suppose that $y\in B(x,\epsilon)$, then by Problem 4, $B(y,\epsilon)=B(x,\epsilon)\subset B(x,\epsilon)$, thus being open. Choose an arbitrary $z\in X\setminus B(x,\epsilon)$, suppose there doesn't exist a $\epsilon'>0$ such that $B(z,\epsilon')\subset X\setminus B(x,\epsilon)$, then it's equivalent to say that for every $\epsilon'>0$, $B(z,\epsilon')$ intersect with $B(x,\epsilon)$, then from Problem 4 we've already known that either $B(x,\epsilon)$ contains $B(z,\epsilon')$ or vice versa. Surely $B(z,\epsilon')$ can't be contained in $B(x,\epsilon)$ since $z\notin B(x,\epsilon)$ for a start. Now suppose that $B(x,\epsilon)$ is contained in $B(z,\epsilon')$ for all $\epsilon'>0$, then for $\epsilon'<\epsilon$, $d(x,z)\geq\epsilon$ given that $z\notin B(x,\epsilon)$, on the other side, $d(x,z)< \epsilon'$, which is absurd. Thus, $X\setminus B(x,\epsilon)$ is open, suggesting that $B(x,\epsilon)$ is closed. To conclude, $B(x,\epsilon)$ is clopen, and by the definition of boundary, $\partial B(x,\epsilon)=\overline{B}(x,\epsilon)\setminus B(x,\epsilon)=\emptyset$. \qed \\
+
+\begin{problem}
+We say that an ordered pair $(X, \mu)$ is an oriented semimetric space if $X$ is a nonempty set and $\mu: X\times X\to [0,\infty)$ is a function that satisfies the triangular inequality and $\mu(x,x)=0$ for all $x\in X$. We say that a subset $S$ of $X$ is open (relative to $\mu$) if for every $x\in S$ there is an $\epsilon>0$ such that $y\in S$ for every $y\in X$ with $\mu(x,y)<\epsilon$. We say that $S$ is closed (relative to $\mu$) if $X\setminus S$ is open. \\
+\indent a). Show that $(\mathbb{R}, \mu)$ is an oriented semimetric space where $\mu: \mathbb{R}\times\mathbb{R}\to [0,\infty)$ is defined by $\mu(x,y):= \max\{y-x,0\}$. \\
+\indent b). In the following part of this problem, $(X,\mu)$ is an arbitrary oriented semimetric space. Define $d: X\times X\to [0,\infty)$ by $d(x,y):= \mu(x,y)+\mu(y,x)$. Is $d$ a semimetric on $X$? \\
+\indent c). For any $\epsilon>0$ and $x\in X$, show that $B(x,\epsilon):= \{y\in X: \mu(x,y)<\epsilon\}$ is open. \\
+\indent d). Prove or disprove: For any $\epsilon >0$ and $x\in X$, $B[x,\epsilon]:=\{y\in X: \mu(x,y)\leq\epsilon\}$ is closed.
+\end{problem}
+
+\textbf{Proof:} a). Consider $x,y,z\in\mathbb{R}$, if $x\geq y$, then $\mu(x,y)=0\leq \mu(x,z)+\mu(z,y)$, else if $x < y$, then $\mu(x,y)+\mu(z,y)=\max\{z-x, 0\}+\max\{y-z, 0\}\geq z-x+y-z=y-x>0$, concluding the proof of triangular inequality. $\mu(x,x)=0$ for all $x\in X$ is obvious. \qed
+\\
+\indent b). First, it's obvious that $d(x,x) = 0$ for all $x\in X$. Symmetry is given by $d(x,y) = \mu(x,y)+\mu(y,x) = \mu(y,x)+\mu(x,y)=d(y,x)$. Finally, to prove the triangular inequality. For any $x,y,z\in X$, $d(x,y)=\mu(x,y)+\mu(y,x)\leq \mu(x,z)+\mu(y, z)+\mu(y, z) +\mu(x, z)$
+
+\begin{problem}
+Let $X$ and $Y$ be two metric spaces and $f: X\to Y$ a function. If there is a real number $K>0$ such that $d_{Y}(f(x), f(y))\leq Kd_{X}(x,y)$ for every $x,y\in X$, we say that $f$ is K - Lipschitz. If $f$ is K - Lipschitz, it is simply referred to as a Lipschitz map. In this case, $\inf\{K>0: f\text{ is K-Lipschitz}\}$, which is denoted by $\text{Lip}(f)$, is called the Lipschitz number of $f$. \\
+\indent a). Show that the identity function on any metric space $X$ onto itself is $1$ - Lipschitz. \\
+\indent b). A differentiable real function $f$ on a nonempty open interval is Lipschitz continuous, provided that $\sup_{x\in O}|f'(x)|<\infty$. (Recall Mean Value Theorem.) \\
+\indent c). Is the function $t\mapsto \sqrt{t}$ Lipschitz? \\
+\indent d). Let $X$ be a normed linear space. Take any positive integer $n$ and real numbers $\lambda_{1}, \dots, \lambda_{n}$, and define the map $f: X^{n}\to X$ by $f(x):=\lambda_{1}x_{1}+\dots+\lambda_{n}x_{n}$. Where $X^{n}$ is metrized by the product metric $\rho$, show that $f$ is Lipschitz. ($f$ is $\max\{|\lambda_{1}|, \dots, |\lambda_{n}||\}$ - Lipschitz). \\
+\indent e). Let $S$ be a nonempty subset of a metric space $X$. Prove that dist $(\cdot, S):= \inf\limits_{z\in S}d(\cdot ,z)$ is $1$ - Lipschitz. \\
+\indent f). let $\kappa$ be a bounded, Riemann integrable function on $[0,1]\times[0,1]$, and consider map $\Phi:\mathbf{C}[0, 1]\to \mathbf{B}[0, 1]$ defined by $\Phi(f)(x):=\int_{0}^{1}\kappa(x,y)f(y)dy$. Prove that $\Phi$ is $\|\kappa\|_{\infty}$- Lipschitz. \\
+\indent g). Let $T$ be a nonempty set, and $X$ a nonempty subset of $B(T)$ which is closed under addition by positive constant functions. Assume that $\Phi$ is an increasing self-map on $X$. If there exists a $K>0$ such that $\Phi(f+\alpha)\leq \Phi(f)+K\alpha$ for every $f\in X$ and $\alpha\geq 0$, $\Phi$ must be K-Lipschitz.
+\end{problem}
+
+\textbf{Proof:} a). Let $I$ be the identity function on $X$, then $d(I(x), I(y))=d(x,y)\leq 1\cdot d(x,y)$, hence is a $1$ - Lipschitz function.  \\
+\indent b). Let $x, y$ be two points in the nonempty open interval $O$, then by Mean Value Theorem, there exists $z\in (x, y)$, such that $\frac{d(f(x), f(y))}{d(x, y)}=f'(z)\leq \sup_{x\in O}|f'(x)|=K<\infty$, then $f$ is Lipschitz continuous.  \\
+\indent c). It is not Lipschitz. For arbitrary $K>0$, consider two points $x=0$, $y=t$ such that $\frac{1}{\sqrt{t}}>K$, then $\frac{|\sqrt{t}-0|}{|t-0|}=\frac{1}{\sqrt{t}}>K$.  \\
+\indent d). Let $x,y\in X^{n}$, and $K = \max\{|\lambda_{1}|, \dots, |\lambda_{n}|\}$, then 
+\begin{eqnarray*}
+d_{X}(f(x),f(y))&=&d_{X}(\lambda_{1}x_{1}+\cdots+\lambda_{n}x_{n},\lambda_{1}y_{1}+\cdots+\lambda_{n}x_{n}) \\
+&=&\|\sum\limits_{i=1}^{n}\lambda_{i}(x_{i}-y_{i})\| \\
+&\leq& \sum\limits_{i=1}^{n}|\lambda_{i}|\cdot \|x_{i}-y_{i}\| \\
+&\leq& \max\{|\lambda_{1}|, \dots, |\lambda_{n}|\}\sum\limits_{i=1}^{n}\|x_{i}-y_{i}\| \\
+&=& \max\{|\lambda_{1}|, \dots, |\lambda_{n}|\}\cdot\rho(x,y)
+\end{eqnarray*} thus is Lipschitz. \\
+\indent e). $\text{dist}(x, S)=\inf\limits_{z\in S}d(x, z)\leq d(x, z')$ for any $z\in S$, then $\text{dist}(x, S)\leq d(x, y)+d(y, z')$, then $\text{dist}(x, S)-\text{dist}(y, S)\leq d(x, y)$. Also, we may have $\text{dist}(y, S)-\text{dist}(y, S)-\text{dist}(x, S)\leq d(x,y)$, thus we have $|\text{dist}(x, S)-\text{dist}(y,S)|\leq d(x, y)$. \\
+\indent f). 
+
+
+
+\end{document}
