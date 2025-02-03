@@ -66,7 +66,7 @@ We say that an ordered pair $(X, \mu)$ is an oriented semimetric space if $X$ is
 \indent d). Consider the following function on $\mathbb{R}$: $\mu(x,y)=0$ if $x\leq y$, $\mu(x,y)=1$ if $x>y$, then $\mu(x,x)=0$ for all $x\in \mathbb{R}$, and $\mu(x,y)\leq\mu(x,z)+\mu(z,y)$ for every $x,y,z\in \mathbb{R}$, then it's an oriented semimetric space. Now, consider $B[0, 1/2]=\{y\in\mathbb{R}: \mu(0, y)\leq 1/2\}=[0, +\infty)$, $\mathbb{R}\setminus [0, \infty)=(-\infty, 0)$, and consider $B(-1,\delta) = \{z: \mu(-1,z)<\delta\}$, then for arbitrary $\delta>0$, $z\geq -1$ contains in the ball, which obviously isn't contained in $(-\infty,0)$. \qed
 
 \begin{problem}
-Let $X$ and $Y$ be two metric spaces and $f: X\to Y$ a function. If there is a real number $K>0$ such that $d_{Y}(f(x), f(y))\leq Kd_{X}(x,y)$ for every $x,y\in X$, we say that $f$ is K - Lipschitz. If $f$ is K - Lipschitz, it is simply referred to as a Lipschitz map. In this case, $\inf\{K>0: f\text{ is K-Lipschitz}\}$, which is denoted by $\text{Lip}(f)$, is called the Lipschitz number of $f$. \\
+Let $X$ and $Y$ be two metric spaces and $f: X\to Y$ a function. If there is a real number $K\geq0$ such that $d_{Y}(f(x), f(y))\leq Kd_{X}(x,y)$ for every $x,y\in X$, we say that $f$ is K - Lipschitz. If $f$ is K - Lipschitz, it is simply referred to as a Lipschitz map. In this case, $\inf\{K\geq0: f\text{ is K-Lipschitz}\}$, which is denoted by $\text{Lip}(f)$, is called the Lipschitz number of $f$. \\
 \indent a). Show that the identity function on any metric space $X$ onto itself is $1$ - Lipschitz. \\
 \indent b). A differentiable real function $f$ on a nonempty open interval is Lipschitz continuous, provided that $\sup_{x\in O}|f'(x)|<\infty$. (Recall Mean Value Theorem.) \\
 \indent c). Is the function $t\mapsto \sqrt{t}$ Lipschitz? \\
@@ -95,10 +95,26 @@ d_{X}(f(x),f(y))&=&d_{X}(\lambda_{1}x_{1}+\cdots+\lambda_{n}x_{n},\lambda_{1}y_{
 Take any metric space $X$, and let $\text{Lip}(X)$ be the set of all bounded and Lipschitz continuous real-valued maps on $X$. \\
 \indent a). Show that $\text{Lip}(\lambda f+g)\leq|\lambda|\text{Lip}(f)+\text{Lip}(g)$ for every $f,g\in \text{Lip}(X)$. Conclude that $\text{Lip}(X)$ is a linear subspace of $B(X)$. (Note that $\text{Lip}(\mathbb{N})=l_{\infty}=B(\mathbb{N})$.) \\
 \indent b). Show that the real map $\|\cdot\|_{L}$ defined on $\text{Lip}(X)$ by $\|f\|_{L}:=\|f\|_{\infty}+\text{Lip}(f)$, is a norm on $\text{Lip}(X)$. \\
-\indent c). For any $f,g\in\text{Lip}(X)$, show that $\text{Lip}(fg)\leq\|f\|_{\infty}+\|g\|_{\infty}\text{Lip}(f)$, and deduce that $\|fg\|_{L}\leq\|f\|_{L}\|g\|_{L}$.
+\indent c). For any $f,g\in\text{Lip}(X)$, show that $\text{Lip}(fg)\leq\|f\|_{\infty}\text{Lip}(g)+\|g\|_{\infty}\text{Lip}(f)$, and deduce that $\|fg\|_{L}\leq\|f\|_{L}\|g\|_{L}$.
 \end{problem}
 
-\textbf{Proof:} 
+\textbf{Proof:} a). For $f,g\in \text{Lip}(X)$, have $d((\lambda f+g)(x), (\lambda f + g)(y))=|\lambda f(x)+g(x)-\lambda f(y)-g(y)|\leq |\lambda|\cdot|f(x)-f(y)|+|g(x)-g(y)|$ for $x, y \in X$, thus $d((\lambda f+g)(x), (\lambda f + g)(y))\leq (|\lambda|\text{Lip}(f)+\text{Lip}(g))\cdot d(y-x)$, then $\text{Lip}(\lambda f+g)\leq |\lambda|\text{Lip}(f)+\text{Lip}(g)$. \\
+\indent b). Firstly, $\|f\|_{L}=0\iff \|f\|_{\infty}=0$ and $\text{Lip}(f)=0$, which means that $|f(y)-f(x)|\leq 0\cdot d(y,x)$ for all $x,y\in X$, then $f\equiv 0$. Secondly, $\|\lambda f\|_{L}=|\lambda|\cdot\|f\|_{\infty}+\text{Lip}(\lambda f)$. Since $|\lambda f(x)-\lambda f(y)|=|\lambda|\cdot|f(x)-f(y)|\leq |\lambda|\cdot K\cdot d(x,y)$, then $\text{Lip}(\lambda f)=|\lambda|\text{Lip}(f)$, thus $\|\lambda f\|_{L}=\lambda(\|f\|_{\infty}+\text{Lip}(g))$. Finally, for $f,g\in \text{Lip}(X)$, $\|f+g\|_{L}=\|f+g\|_{\infty}+\text{Lip}(f+g)\leq \|f\|_{\infty}+\|g\|_{\infty}+\text{Lip}(f)+\text{Lip}(g)=\|f\|_{L}+\|g\|_{L}$. \\
+\indent c). Consider 
+\begin{eqnarray*}
+|f(x)g(x)-f(y)g(y)|&=&|f(x)g(x)-f(x)g(y)+f(x)g(y)-f(y)g(y)| \\
+&\leq& |f(x)|\cdot|g(x)-g(y)|+|g(y)|\cdot|f(x)-f(y)| \\
+&\leq& (\text{Lip}(g)|f(x)|+\text{Lip}(f)|g(y)|)\cdot d(x,y) \\
+&\leq& (\|f\|_{\infty}\text{Lip}(f)+\|g\|_{\infty}\text{Lip}(g))\cdot d(x,y)
+\end{eqnarray*}
+\indent hence $\text{Lip}(fg)\leq\|f\|_{\infty}\text{Lip}(g)+\|g\|_{\infty}\text{Lip}(f)$. Also, \\
+\begin{eqnarray*}
+\|fg\|_{L}&=&\|fg\|_{\infty}+\text{Lip}(fg) \\
+&\leq& \|f\|_{\infty}\|g\|_{\infty} + \text{Lip}(fg)+\text{Lip}(f)\text{Lip}(g) \\
+&=&\|f\|_{\infty}\|g\|_{\infty}+\|f\|_{\infty}\text{Lip}(g)+\text{Lip}(f)\|g\|_{\infty}+\text{Lip}(f)\text{Lip}(g) \\
+&=&(\|f\|_{\infty}+\text{Lip}(f))(\|g\|_{\infty}+\text{Lip}(g)) \\
+&=&\|f\|_{L}\|g\|_{L}
+\end{eqnarray*}\qed
 
 
 
