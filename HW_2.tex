@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}    
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+
+
+\begin{document}
+\noindent Topology \hfill Assignment 2\\
+Yunzhe Zheng. (2025/02/21)
+
+\hrulefill
+
+\begin{problem}
+When viewed as metric subspaces of $\mathbb{R}$, are $\{1, \frac{1}{2}, \frac{1}{3}, \dots\}$ and $\{1, 2, 3, \dots\}$ homeomorphic? Isometric?
+\end{problem}
+
+\textbf{Proof:} Consider the map $f: H := \{1, \frac{1}{2}, \frac{1}{3}, \dots\}\to G := \{1, 2, 3, \dots\}$ by $f(x) = \frac{1}{x}$, and obviously it is a bijection. Notice that any subset in $H$ (or $G$) is open in $H$ (or $G$), since for arbitrary $x\in H$, Consider the ball $B_{1/2}(x)$, then $B_{1/2}(x)\cap H=\{x\}\subseteq H$. For $O\subseteq G$, which is automatically open, $f^{-1}(O)$ is open, and vice versa. Thus is homeomorphic. \\
+\indent For isometry, notice that for $x,y\in H$, $d_{H}(x,y)=|x-y| < 1$. However, $2-1=1$, then they are not isometric. \qed \\
+
+\begin{problem}
+Given a metric space $X$, and any point $x$ and $y$ in $X$, define 
+$$
+\Lambda_{X}(x,y):= \{z\in X: d_{X}(x,y)=d_{X}(x, z) + d_{X}(z,y)\}.
+$$
+\indent a). Show that if $f$ is an isometry from $X$ onto a metric space $Y$, then 
+$$
+\Lambda_{Y}(f(x), f(y))=f(\Lambda_{X}(x,y)) \text{, for all } x,y\in X.
+$$ 
+\indent b). Show that $\mathbb{R}_{1}^{n}$ and $\mathbb{R}^{n}_{2}$ are not isometric for any $n\geq 2$
+\end{problem}
+
+\textbf{Proof:} a). For $z\in \Lambda_{x}(x,y)$, then $d_{X}(x,y) = d_{X}(x,z) + d_{X}(z,y)$, then by isometry of $f$, $d_{Y}(f(x), f(y))=d_{Y}(f(x), f(z))+d_{Y}(f(z), f(y))$, which means that $f(z)\in\Lambda_{Y}(f(x), f(y))$, implying $f(\Lambda_{x}(x,y))\subseteq \Lambda_{Y}(f(x), f(y))$. Conversely, for $z'\in \Lambda_{Y}(f(x), f(y))$, $d_{Y}(f(x), f(y))=d_{Y}(f(x), z')+d_{Y}(z', f(y))$. By injectivity condition, there exists unique $z\in X$ such that $f(z)=z'$, and $d_{X}(x, y)=d_{X}(x, z)+d_{X}(z, y)$ by isometry, then $z\in \Lambda_{X}(x, y)$, which implies $z'\in f(\Lambda_{X}(x,y))$, hence we have $\Lambda_{Y}(f(x), f(y))=f(\Lambda_{x}(x,y))$ for every $x,y\in X$. \\
+\indent b). If $f$ is an isometry from $\mathbb{R}_{1}^{n}$ onto $\mathbb{R}^{n}_{2}$, then $f-f(\mathbf{0})$ is also a isometry, then we may assume $f(\mathbf{0})=\mathbf{0}$ without loss of generality, since we can always do translation as above. Consider $C_{1} = \{x\in \mathbb{R}^{n}_{1}: \|x\|_{1}=1\}$ and $C_{2}=\{x\in\mathbb{R}^{n}_{1}: \|x\|_{2}=1\}$, then $f$ send $C_{1}$ onto $C_{2}$ by isometry to the origin. Consider vertices of $C_{1}$, $v_{i}=(0, 0, \dots, 0, 1, 0, \dots, 0)$, where only the i-th component is $1$, then notice that every two distinct vertices in $C_{1}$ has distance $2$. Now without loss of generality, assume that $f$ maps $(1, 0, \dots, 0)$ to $(1, 0, \dots, 0)=:x$, then for $y=(y_{1}, y_{2}, \dots, y_{n})\in C_{2}$, $d_{2}(x,y)=\sqrt{(y_{1}-1)^{2}+y_{2}^{2}+\dots+y_{n}^{2}}=2$, combining with the fact that $y_{1}^{2}+\dots+y_{n}^{2}=1$, obtain that $y_{1}=-1$ and $y_{i}=0$ otherwise. However, we have more than one candidate for that point, which breaks the injectivity of $f$. Thus $f$ cannot be an isometry. \qed
+\\
+\begin{problem}
+Let $A$ and $B$ be two finite subsets of $\mathbb{R}^{n}$ with $|A|=|B|$. Prove that $\mathbb{R}^{n}\setminus A\simeq\mathbb{R}^{n}\setminus B$.
+\end{problem}
+
+\textbf{Proof:} Prove by induction, the base case is that $|A|=|B|=1$, then homeomorphism is given directly by translation. Now suppose for $|A|=n$, this statement holds, then for $|A|=|B|=n+1$, write $A=\{a_{1}, \dots, a_{n+1}\}$, and $B=\{b_{1}, \dots, b_{n+1}\}$. Apply the induction step, it's sufficient to consider $\varphi(a_{n+1})$ and $b_{n+1}$, where $\varphi$ is the homeomorphism for $\{a_{1}, \dots, a_{n}\}$, since points before have been matched by induction. Consider the remaining points component-wise, specifically for the first coordinate. Without loss of generality, we may assume that $\varphi(a_{1}) < \varphi(a_{2}) <\dots < \varphi(a_{n+1})$, and $b_{1} < b_{2} < \dots < b_{n+1}$. Take function $f(x)=\begin{cases}
+  x& \text{ for } x < \varphi_{1}(a_{i}) \\
+  b_{n, 1}+\frac{b_{n+1, 1}-b_{n, 1}}{\varphi_{1}(a_{n+1})-\varphi_{1}(a_{i})}& \text{ for } \varphi_{1}(a_{i}) < x < \varphi_{1}(a_{n+1})\\
+  b_{n+1, 1} + x - \varphi_{1}(a_{n+1})& \text{ for } x > \varphi(a_{n+1})
+\end{cases}$ \\
+for $i$ such that $\varphi_{1}(a_{i})=b_{n,1}$ (first component of $b_{n}$). Notice that if we do the same at each component, we obtain a continuous, monotone, surjective (thus invertible) map, and combining it with the previous $\varphi$, we get the desired homeomorphism. \qed
+\\
+\begin{problem}
+Let $n$ be a positive integer. Show that $\{x\in\mathbb{R}^{n}: \|x\|_{p}=1\}\simeq \mathbb{S}^{n-1}$ for any $p\in[1, \infty]$
+\end{problem}
+
+\textbf{Proof:} Consider the map $f: \{x\in\mathbb{R}^{n}: \|x\|_{p}=1\} \to \mathbb{S}^{n-1}$ as $f(x)=\frac{x}{\|x\|_{2}}\in \mathbb{S}^{n-1}$, and claim its inverse is 
+ $g: \mathbb{S}^{n-1}\to \{x\in\mathbb{R}^{n}: \|x\|_{p}=1\}$ as $g(y)=\frac{y}{\|y\|_{p}}$. Indeed, $f(g(y))=\frac{y/\|y\|_{P}}{\|y/\|y\|_{p}\|_{2}}=\frac{y}{\|y\|_{2}}=y$, and similarly with $g(f(x))$. Also, map $f,g$ are continuous given that the norm is a continuous function, thus the two spaces are homeomorphic. \qed
+\\
+\begin{problem}
+Show that the products of countably many homeomorphic metric spaces is homeomorphic. Conclude that if we metrized $[0,1]\times [0,\frac{1}{2}]\times \dots$ by the product metric, we would obtain a metric space that is homeomorphic to the Hilbert cube. Now combine this fact with Theorem 3.1 to conclude: Every separable metric space can be embedded in $l^{2}$.
+\end{problem}
+
+\textbf{Proof:} Suppose we have $A_{i}\simeq B_{i}$ for $i=1, 2, 3\dots$, and denote each homeomorphism by $f_{i}: A_{i}\to B_{i}$. Consider $F: \prod\limits_{i=1}^{\infty}A_{i}\to \prod\limits_{i=1}^{\infty}B_{i}$ by $F(a_{1}, a_{2, \dots})=(f_{1}(a_{1}), f_{2}(a_{2}),\dots)$, and this map is clearly bijective since each component function is a homeomorphism.
+\\
+\begin{problem}
+Let $X$ and $Y$ be two metric spaces, and $f: X\to Y$ a homeomorphism. Prove that $f(\text{cl}(S))=\text{cl}(f(S))$ and $f(\partial S)=\partial(f(S))$ for any subset $S$ of $X$.
+\end{problem}
+
+\end{document}
