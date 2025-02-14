@@ -45,12 +45,12 @@ $$
 Let $A$ and $B$ be two finite subsets of $\mathbb{R}^{n}$ with $|A|=|B|$. Prove that $\mathbb{R}^{n}\setminus A\simeq\mathbb{R}^{n}\setminus B$.
 \end{problem}
 
-\textbf{Proof:} Prove by induction, the base case is that $|A|=|B|=1$, then homeomorphism is given directly by translation. Now suppose for $|A|=n$, this statement holds, then for $|A|=|B|=n+1$, write $A=\{a_{1}, \dots, a_{n+1}\}$, and $B=\{b_{1}, \dots, b_{n+1}\}$. Apply the induction step, it's sufficient to consider $\varphi(a_{n+1})$ and $b_{n+1}$, where $\varphi$ is the homeomorphism for $\{a_{1}, \dots, a_{n}\}$, since points before have been matched by induction. Consider the remaining points component-wise, specifically for the first coordinate. Without loss of generality, we may assume that $\varphi(a_{1}) < \varphi(a_{2}) <\dots < \varphi(a_{n+1})$, and $b_{1} < b_{2} < \dots < b_{n+1}$. Take function $f(x)=\begin{cases}
+\textbf{Proof:} Prove by induction, the base case is that $|A|=|B|=1$, then homeomorphism is given directly by translation. Now suppose for $|A|=n$, this statement holds, then for $|A|=|B|=n+1$, write $A=\{a_{1}, \dots, a_{n+1}\}$, and $B=\{b_{1}, \dots, b_{n+1}\}$. Apply the induction step, it's sufficient to consider $\varphi(a_{n+1})$ and $b_{n+1}$, where $\varphi$ is the homeomorphism for $\{a_{1}, \dots, a_{n}\}$, since points before have been matched by induction. Consider the remaining points component-wise, specifically for the first coordinate. Without loss of generality, we may assume that $\varphi(a_{1}) < \varphi(a_{2}) <\dots < \varphi(a_{n+1})$, and $b_{1} < b_{2} < \dots < b_{n+1}$. Take function $f_{1}(x)=\begin{cases}
   x& \text{ for } x < \varphi_{1}(a_{i}) \\
   b_{n, 1}+\frac{b_{n+1, 1}-b_{n, 1}}{\varphi_{1}(a_{n+1})-\varphi_{1}(a_{i})}& \text{ for } \varphi_{1}(a_{i}) < x < \varphi_{1}(a_{n+1})\\
   b_{n+1, 1} + x - \varphi_{1}(a_{n+1})& \text{ for } x > \varphi(a_{n+1})
 \end{cases}$ \\
-for $i$ such that $\varphi_{1}(a_{i})=b_{n,1}$ (first component of $b_{n}$). Notice that if we do the same at each component, we obtain a continuous, monotone, surjective (thus invertible) map, and combining it with the previous $\varphi$, we get the desired homeomorphism. \qed
+for $i$ such that $\varphi_{1}(a_{i})=b_{n,1}$ (first component of $b_{n}$). Notice that if we do the same at each component, we obtain a continuous and invertible map, and combining it with the previous $\varphi$, we get the desired homeomorphism. \qed
 \\
 \begin{problem}
 Let $n$ be a positive integer. Show that $\{x\in\mathbb{R}^{n}: \|x\|_{p}=1\}\simeq \mathbb{S}^{n-1}$ for any $p\in[1, \infty]$
