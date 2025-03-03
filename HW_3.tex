@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}    
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+
+
+\begin{document}
+\noindent Topology \hfill Assignment 3\\
+Yunzhe Zheng. (2025/03/07)
+
+\hrulefill
+
+\begin{problem}
+Let $X$ be a nonempty set, and let $\mathcal{O}$ stand for the collection of all subsets of $X$ whose complements in $X$ are countable, plus the empty set. Show that $\mathcal{O}$ is a topology on $X$ which reduces to the discrete topology when $X$ is countable. Now, assume that $X$ is uncountable, and endow it with the countable complement topology. Prove: \\
+\indent a. A sequence in $X$ converges iff it is eventually constant. \\
+\indent b. $X$ is not Hausdorff, but a sequence in $X$ may converge to at most one point in $X$. \\
+\indent c. A nonempty proper subset of $X$ is closed iff it is countable. \\
+\indent d. For any point $x$ in $X$, the closure of $X\setminus \{x\}$ is $X$ even though no sequence in $X\setminus\{x\}$ can possibly converge to $x$.
+\end{problem}
+
+\textbf{Proof:} To show that $\mathcal{O}$ is a topology. Firstly, $X\in \mathcal{O}$ because $X\setminus X=\emptyset$ is countable, and $\emptyset\in X$ by definition. Secondly, let $\mathcal{O}'\subseteq \mathcal{O}$, $X\setminus\bigcup_{O\in\mathcal{O}}O = \bigcap_{O\in\mathcal{O}}(X\setminus O)$, which is at most countable. Finally, let $O_{1}, \dots O_{n}\in \mathcal{O}$. $X\setminus\bigcap_{i=1}^{n}O_{i}=\bigcup_{i=1}^{n}(X\setminus O_{i})$, which is a finite union of countable sets, thus is countable. Hence $\mathcal{O}$ is indeed a topology. When $X$ itself is countable, want to show that $\mathcal{O}=2^{X}$, left inclusion is immediate, for $S\in 2^{X}$, $X\setminus S$ is at most countable given $X$ is countable, $S\in\mathcal{O}$, thus $\mathcal{O}=2^{X}$ is discrete topology. \\
+\indent a. Left implication is obvious since all constant sequences converge. Now suppose that $\{x_{m}\}_{m=1}^{\infty}\in X^{\infty}$ converges to $x\in X$ (rule out all $x_{i}$ such that $x_{i}=x$), and $\{x_{m}\}$ is not eventually constant, then choose $O' = O\cup\{x_{m}\}$ for $O\in\mathcal{O}$, notice that $X\setminus O' = (X\setminus O)\cap(X\setminus \{x_{m}\})$, which is at most countable, also $x\in O'$. However, there is no $M\in\mathbb{N}$ such that $O'$ contains $\{x_{m}\}_{m\geq M}$, contradicting the fact that it converges, hence must be eventually constant. \\
+\indent b. For arbitrary $x,y\in X$. Suppose there exists $O_{1}$ containing $x$, and $O_{2}$ containing $y$ such that $O_{1}\cap O_{2}=\emptyset$, then $O_{1}\subseteq X\setminus O_{2}$ at most countable, implying that $X\setminus O_{1}$ is uncountable, contradicting the fact that $O\in\mathcal{O}$, hence $X$ is not Hausdorff. Since by question a, a convergent sequence is eventually constant, so it can only converge at one point. \\
+\indent c. Let $\emptyset\neq S\subsetneq X$ be closed, then by definition it's equivalent to $X\setminus S$ is open and not empty, then by definition of countable complement topology, it's equivalent to $ X\setminus(X\setminus S) = S$ is countable. \\
+\indent d. First, notice that $X\setminus\{x\}$ is open, because $X\setminus (X\setminus\{x\})=\{x\}$ countable. By definition of closure, $\overline{X\setminus\{x\}}:= \bigcap \{C\in \mathcal{C}_{X}: S\subseteq C\}$. Since the only possible $C\in\mathcal{C}_{X}$ containing $X\setminus\{x\}$ is $X$ itself, then its closure has to be $X$.\qed
+\\
+\begin{problem}
+Let $X$ be a topological space and $S$ a subset of $X$. We say that a point $x$ in $X$ is a limit point of $S$ if every open neighborhood of $x$ contains a point of $S$ other than $x$. Prove: \\
+\indent a. $S$ is closed iff it contains all of its limit points. \\
+\indent b. $\text{cl}(S)$ equals $S$ plus all limit points of $S$. \\
+\indent c. If $X$ is a $T_{1}$-space and $x$ is a limit point of $S$, then every open neighborhood of $x$ contains infinitely many points of $S$.
+\end{problem}
+
+\textbf{Proof:} a. Suppose that $S$ is closed, and if there exists a limit point $s$ of $S$ such that $x\notin S$, then by definition, for every open neighborhood of $x$, it contains a point of $S$, thus $S^{c}$ is not open, contradicting the fact that $S$ is closed. Conversely, if $S$ contains all of its limit points, the for $x\in S^{c}$, $x$ cannot possibly be a limit point of $S$, meaning that there exists open neighborhood of $x$ not intersecting $S$, implying $S^{c}$ is open, thus $S$ is closed. \\
+\indent b. $\text{cl}(S)=\bigcap\{C\in \mathcal{C}_{X}:S\subseteq C\}=X\setminus\bigcup\{O\in \mathcal{O}_{X}: O\subseteq S^{c}\}$. For $x\in \text{cl}(S)^{c}$, then $x\in \bigcup\{O\in\mathcal{O}_{X}: O\subseteq S^{c}\}$, then there exists a neighborhood $B_{x}$ containing $x$ such that $B_{x}\subseteq\bigcup\{O\in\mathcal{O}_{X}: O\subseteq S^{c}\}$, then $x$ is not a limit point of $S$ and surely not a point in $S$, thus $H:=S\cup\{\text{limit points of }S\}\subseteq\text{cl}(S)$. Conversely, if $x\notin H$, then $x\notin S$ and $x\notin \{\text{limit points of $S$}\}$, then there exists a open neighborhood of $x$ that it doesn't contain any point of $S$, so $x\notin \text{cl}(S)$, thus $\text{cl}(S)\subseteq H$.\\
+\indent c. Let $O_{1}$ be any open neighborhood of $x$, then by definition of limit point, there exists a point $x_{1}\in S$ such that $x_{1}\in O_{1}$. Consider $O_{2}=O_{1}\setminus\{x_{1}\}$, $O_{2}$ is open since $X\setminus O_{2}=(X\setminus O_{1})\cup \{x_{1}\}$ is closed ($\{x_{1}\}$ is closed since $X$ is $T_{1}$-space), then $O_{2}$ must contain $x_{2}\in S$ such that $x_{2}\in O_{2}$, $x_{1}\neq x_{2}$. Continuing this process, we conclude that $O_{1}$ must contain infinitely many points of $S$ (Notice that this process can indeed be executed infinitely many times given that $x$ is a limit point). \qed
+\\
+\begin{problem}
+Prove: A topological space $X$ is Hausdorff iff for every $x\in X$, the intersection of all closed neighborhoods of $x$ in $X$ equals $\{x\}$. 
+\end{problem}
+
+\textbf{Proof:} $\{x\}\subseteq \bigcap\{C\in \mathcal{C}_{X}: x\in C\}$ is obvious. If $X$ is Hausdorff, for $y\in \bigcap\{C\in \mathcal{C}_{X}: x\in C\}$, if $y\neq x$, there exists open $B_{x}$ containing $x$, open $B_{y}$ containing $y$ such that $B_{x}$ and $B_{y}$ are disjoint. Consider $C'=X\setminus B_{y}$, then $C'$ is closed containing $x$, however, $y\notin C'$, contradicting the fact that $y\in \bigcap\{C\in \mathcal{C}_{X}: x\in C\}$. Conversely, for any $x,y\in X$, since $\{x\}=\bigcap\{C\in\mathcal{C}_{X}: x\in C\}$, then there exists a closed neighborhood $C'$ such that $y\notin C'$, then $y\in X\setminus C'$ open. By definition of neighborhood, $C'$ contains an open neighborhood of $x$, say $B_{x}$, then we obtain $X\setminus C'$ and $B_{x}$ satisfying criteria for being Hausdorff. \qed 
+\\
+\begin{problem}
+For any real number $a$, let $S_{a}$ stand for the set $\{x\in\mathbb{R}^{2}: x_{1}>a\}$. Show that $\mathcal{B}:=\{S_{a}: a\in\mathbb{R}\}$ is a basis for a topology on $\mathbb{R}^{2}$. Also show that the topology generated by $\mathcal{B}$ is $\mathcal{B}\cup\{\emptyset, \mathbb{R}^{2}\}$.
+\end{problem}
+
+\textbf{Proof:} First is to show that $\bigcup_{a\in\mathbb{R}}S_{a}=\mathbb{R}^{2}$, indeed for any $(x, y)\in\mathbb{R}^{2}$, there exists $a\in\mathbb{R}$ such that $x>a$, so $(x,y)\in\bigcup_{a\in\mathbb{R}}S_{a}$, the other direction is immediate. Secondly, suppose that $p=(x,y)\in S_{a_{1}}\cap S_{a_{2}}$ for $S_{a_{1}}, S_{a_{2}}\in\mathcal{B}$, we may assume that $a_{1}<a_{2}$, then $a_{1}<a_{2}<x$. Let $a_{3}=(a_{2}+x)/2$, then $S_{a_{3}}\subseteq S_{a_{1}}\cap S_{a_{2}}$ and $p\in S_{a_{3}}$, thus $\mathcal{B}$ is a basis for a topology on $\mathbb{R}^{2}$. Now we are left to show that $\{\text{all unions of elements in } \mathcal{B}\}\cup \{\emptyset\}=\mathcal{B}\cup\{\emptyset, \mathbb{R}^{2}\}$. $\mathcal{B}\cup\{\emptyset, \mathbb{R}^{2}\}\subseteq\{\text{all unions of elements in } \mathcal{B}\}\cup \{\emptyset\}$ is clear since $\mathbb{R}^{2}=\bigcup_{S\in \mathcal{B}}S$. Conversely, let $\mathcal{S}$ be the collection of elements on $\mathcal{B}$, and let $\mathcal{A}_{\mathcal{S}}$ be the corresponding collection of $a$ for $S_{a}\in\mathcal{S}$. If $\mathcal{A}_{\mathcal{S}}$ is finite, then $\bigcup_{S\in\mathcal{S}}S=S_{a}\in\mathcal{B}$ for minimum $a\in\mathcal{A}_{\mathcal{S}}$. If $\mathcal{A}_{\mathcal{S}}$ is infinite, then consider $a=\inf\mathcal{A}_{\mathcal{S}}$. Suppose that $a = -\infty$, then $\bigcup_{S\in\mathcal{S}}S=\mathbb{R}^{2}$, or if $a< -\infty$, then $\bigcup_{S\in\mathcal{S}}S=S_{a}$ ($\bigcup_{S\in\mathcal{S}}S\subseteq S_{a}$ is obvious. Conversely for $x\in S_{a}$, there exists $y\in\mathcal{A}$ such that $a\leq y < x$). To conclude, the topology generated is $\mathcal{B}\cup\{\emptyset, \mathbb{R}^{2}\}$. \qed
+\\
+\begin{problem}
+The following is a proof of the fact that there are infinitely many primes. An arithmetic progression is a set of the form 
+$$
+B_{a,b}:= a+b\mathbb{Z}
+$$ that is, $B_{a,b}=\{a+kb: k\in\mathbb{Z}\}$, for any $a,b\in\mathbb{Z}$ with $b\neq 0$. Let $\mathcal{B}$ denote the set of all arithmetic progressions. \\
+\indent a. Show that $\mathcal{B}$ is a basis for a topology on $\mathbb{Z}$. \\
+\indent b. Show that every element of $\mathcal{B}$ is closed with respect to this topology. \\
+\indent c. Put $\mathcal{S}:= \{p\mathbb{Z}: p\in\mathcal{P}\}$, and find $\mathbb{Z}\setminus\bigcup\mathcal{S}$. \\
+\indent d. Using part (b) and (c), show that there cannot be finitely many prime numbers.
+\end{problem}
+
+\textbf{Proof:} a. First we want to show that $\bigcup_{B\in\mathcal{B}}B=\mathbb{Z}$. Indeed, $\bigcup_{B\in\mathcal{B}}B\subseteq\mathbb{Z}$ is obvious, and conversely, notice that $\mathbb{Z}=B_{0, 1}$. Secondly, for $z\in B_{a,b}\cap B_{a',b'}=\{a+kb\}\cap\{a'+kb'\}$, where $a\neq a'$ and $b\neq b'$, then $z\in \{z+k\cdot b\cdot b'\}\subseteq B_{a,b}\cap B_{a',b'}$, where $\{z+k\cdot b\cdot b': k\in \mathbb{Z}\}\in\mathcal{B}$. Hence $\mathcal{B}$ is a basis for a topology on $\mathbb{Z}$. \\
+\indent b. Fix $B_{a,b}=\{a+kb: k\in\mathbb{Z}\}$ for some $a,b\in\mathbb{Z}$. Without loss of generality, we can assume that $0\leq a< b$, then for $z\in\mathbb{Z}\setminus B_{a,b}$, then we can write $z=a'+kb$, where $0\leq a'\neq a<b$, thus $z\in \{a'+kb: k\in\mathbb{Z}\}\in\mathcal{B}$, and $\{a'+kb:k\in\mathbb{Z}\}\cap B_{a,b}=\emptyset$. Hence $\mathbb{Z}\setminus B_{a,b}$ is open, $B_{a,b}$ is closed. \\
+\indent c. Suppose there exists $z\in\mathbb{Z}\setminus\bigcup\mathcal{S}$, $z\neq 1,-1$. If $z$ is prime, then it must be in one of $\mathcal{S}$, else if $z$ is not prime, then prime factorize $z$ into product of one prime and an integer, it still belongs to one of $\mathcal{S}$, thus $\mathbb{Z}\setminus\bigcup\mathcal{S}\subseteq \{1,-1\}$. Conversely, both $1$ and $-1$ can not be expressed as $p\mathbb{Z}$ for some $p$ primes. Hence $\mathbb{Z}\setminus\bigcup\mathcal{S}=\{1,-1\}$. \\
+\indent d. Suppose that there are finitely many prime numbers, then $\bigcup\mathcal{S}$ is finite union of closed sets, thus is closed, then $\{1,-1\}$ is open. However, according to the topology induced by $\mathcal{B}$, any open set is the union of arithmetic progressions, thus is infinite. So $\{1,-1\}$ cannot be open, leading to a contradiction. \qed
+\\
+\begin{problem}
+A topological space $X$ is said to be a Lindelöf space if for every $\mathcal{O}\subseteq\mathcal{O}_{X}$ with $X=\bigcup\mathcal{O}$, there is a countable $\mathcal{U}\subseteq\mathcal{O}$ with $X=\bigcup\mathcal{U}$. \\
+\indent a. Show that a closed subspace of a Lindelöf space is Lindelöf. \\
+\indent b. Show that a continuous image of a Lindelöf space is Lindelöf. \\
+\indent c. Prove: Every second-countable topological space is Lindelöf. \\
+\indent d. Show that the Sorgenfrey line $X$ is Lindelöf. Thus, even a first-countable and separable Lindelöf space need not be second-countable. \\
+\indent e. Show that a metric space is second-countable iff it is Lindelöf. In particular, $\mathbb{R}^{n}$ is Lindelöf for any $n\geq 1$.
+\end{problem}
+
+\textbf{Proof:} a. Let $X'\subseteq X$ be a closed subspace of Lindelöf space $X$, and let $\mathcal{O}'\subseteq\mathcal{O}_{X}$ satisfies $X'\subseteq\bigcup\mathcal{O}'$. Since $O:=X\setminus X'$ is open, $\mathcal{O}'\cup \{O\}$ covers $X$. By Lindelöf property, there exists a countable $\mathcal{U}=\mathcal{U}'\cup\{O\}\subseteq\mathcal{O}$ with $X=\bigcup\mathcal{U}$, where $\mathcal{U}'\subseteq\mathcal{O}'$, then $\mathcal{U}'$ is countable. Consider $\mathcal{U''}=\{X'\cap U: U\in\mathcal{U}'\}$, $\mathcal{U}''$ is countable and $X'=\bigcup\mathcal{U}''$.\\
+\indent b. Let $X$ be a Lindelöf space and $f: X\to X'=\text{Im}(X)$. Fix $\mathcal{O}\subseteq\mathcal{O}_{X'}$ with $X'=\bigcup\mathcal{O}$, by continuity of $f$, $\mathcal{U}=\{f^{-1}(O): O\in\mathcal{O}\}$ is a collection of open sets in $X$ such that $X=\bigcup\mathcal{U}$. By Lindelöf property of $X$, there exists a countable $\mathcal{U}'\subseteq\mathcal{U}$ with $X=\bigcup\mathcal{U}'$, then $f(\mathcal{U}')=\{f(U): U\in\mathcal{U}'\}=\{f(f^{-1}(O)): \text{for some countable } O\in\mathcal{O}\}=\{O: \text{for some countable } O\in\mathcal{O}\}$, the last equality holds because $X'$ is the image of $X$, also $X'=f(X)=f(\bigcup\mathcal{U}')=\bigcup f(\mathcal{U}')$, so $X'$ is Lindelöf. \\
+\indent c. Let $\mathcal{O}$ be an open cover of $X$, and $\mathcal{B}$ be a countable basis. Define $\mathcal{B}'=\{B\in\mathcal{B}: B\subseteq O\text{ for some }O\in\mathcal{O}\}$, also define $O_{B}\in\mathcal{O}$ such that $B\subseteq O_{B}$. Claim that $\mathcal{U}=\{O_{B}: B\in\mathcal{B}'\}$ satisfies countability and $X=\bigcup\mathcal{U}$. Indeed, $\bigcup\mathcal{U}\subseteq X$ is obvious. Now suppose that $x\in X$ but $x\notin O_{B}$ for all $B\in \mathcal{B}'$, then $x\notin B$ for all $B\in\mathcal{B}'$. Notice that $x\in O\in\mathcal{O}$ (since $\mathcal{O}$ is a covering), and $x\in B$ for some $B\notin \mathcal{B}'$ (because $\mathcal{B}$ is a basis), then $x\in B\subseteq O\cup B\in\mathcal{O}$, then $B\in\mathcal{B}'$, leading to a contradiction, thus $X=\bigcup\mathcal{U}$ and is Lindelöf. \\
+\indent d. Let $\mathcal{O}$ be a covering of $\mathcal{S}$-line. For every rational number $r$, there exists $O_{r}\in\mathcal{O}$ such that $r\in O_{r}$, then claim that $\mathcal{U}=\{O_{r}: r\in O_{r}\text{ for all rational }r\}$ is a countable covering of $\mathcal{S}$-line. $\bigcup\mathcal{U}\subseteq\mathbb{R}$ is obvious. Conversely, suppose there exists $x\in\mathbb{R}$ such that $x\notin \bigcup\mathcal{U}$, then there exists a open ball $B(x,\epsilon)$ (in Euclidean metric sense) such that $B(x,\epsilon)\cap O_{r}$ for $O_{r}\in\mathcal{U}$, for otherwise, consider a decreasing rational sequence $\{x_{n}\}$ approaching $x$ (in Euclidean sense), $\bigcup O_{x_{n}}=\bigcup [a_{x_{n}}, b_{x_{n}})\ni x$. However, by density of rational numbers in $\mathbb{R}$, there exists $r\in\mathbb{Q}$ such that $x\in B(x,\epsilon)$, contradicting $B(x,\epsilon)\cap O_{r}$ for $O_{r}\in\mathcal{U}$. Hence $\bigcup\mathcal{U}=\mathbb{R}$. \\
+\indent e. It's sufficient to show that Lindelöf metric $X$ space is second countable. define $\mathcal{U}_{k}=\{B(x,1/k): x\in X\}$, since $X$ is Lindelöf, there exists $\mathcal{U}_{k}'\subseteq\mathcal{U}_{k}$ is countable. Enumerate $\mathcal{U}_{k}$ for all $k\in\mathbb{N}_{+}$, each has a countable $\mathcal{U}_{k}'\subseteq\mathcal{U}_{k}$. Take the union of all centers of $\bigcup \mathcal{U}_{k}'$, denote it as $D$, it's sufficient to show that $D$ is a dense subset of $X$. Indeed, take any $\epsilon>0$, pick $n$ sufficiently large such that $1/n < \epsilon$, then by construction of $\mathcal{U}_{n}'$, $\bigcup_{x\in D}B(x,\epsilon)=X$, so $D$ is a dense subset in $X$. Finally, by proposition 2.5, a metrizable space containing a countable dense set is separable, and thus second-countable. \qed
+\\
+\begin{problem}
+
+\end{problem}
+\end{document}
