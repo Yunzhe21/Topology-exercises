@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}    
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+
+
+\begin{document}
+\noindent Topology \hfill Assignment 6\\
+Yunzhe Zheng. (2025/05/01)
+
+\hrulefill
+
+\begin{problem}
+Give a direct proof of the fact that every compact subset of a metric space is bounded. Next use the fact to prove that $GL(n)$ is not compact for any $n\in\mathbb{N}$
+\end{problem}
+
+\textbf{Proof:} Let $S$ be compact subset of metric space $M$, then consider the open cover $\{B(x,\epsilon)\}_{x\in S}$ for some $\epsilon>0$, then there exists a finite subcover $\{B(x_i,\epsilon)\}_{i=1}^{k}$. Fix $x\in S$, for any $y\in S$, $d(x,y)< 2k\epsilon$, hence $S\subseteq B(x,2k\epsilon)$, and is bounded. $GL(n)$ is not bounded, then it is not compact for any $n\in\mathbb{N}$. \qed
+\\
+\begin{problem}
+(The Local-to-Global Method) Let $X$ be a topological space, and suppose $P$ is a property that a subspace of $X$ may or may not satisfy. Assume that i). $P$ is satisfied by an open neighborhood of every point in $X$; and ii). if $P$ is satisfied by two open sets in $X$, then it is also satisfied by the union of these sets. Show that if $X$ is compact, then it satisfies the property $P$.
+\end{problem}
+
+\textbf{Proof:} Since $X=\bigcup_{x\in X} O_x$, then there exists a finite subcover $\{O_{x_i}\}_{i=1}^{k}$ such that $X=\bigcup_{i=1}^{k}O_{x_i}$, Since by assumption $P$ is satisfied on all these $O_{x_{i}}$, then it is satisfied on the finite union of these sets by assumption ii, hence the conclusion follows. \qed
+\\
+\begin{problem}
+(Dini's Theorem) Let $X$ be a compact metric space, and take any $f_1, f_2, \dots\in C(X)$. Use the local-to-global method to prove that if $f_1\geq f_2\geq\dots$ and $f_m\to 0$ pointwise, then $f_m\to 0$ uniformly.
+\end{problem}
+
+\textbf{Proof:} For any $x\in X$, since $f_m\to0$ pointwise, then for all $\epsilon>0$, there exists $M\in\mathbb{N}$ such that $|f_m(x)|<\epsilon/2$ for all $m>M$. Also, by continuity, for the same $\epsilon$ as above, there exists $\delta>0$ such that $|f_m(x')-f_m(x)|<\epsilon/2$ for $x'\in B(x,\delta)$, then $|f_m(x')|<\epsilon$ for all $x'\in B(x,\delta)$, implying that $\{f_m\}$ converges uniformly on $B(x,\delta)$ for some $\delta>0$ and every $x\in X$. Also, if uniform convergence property is satisfied on two open sets $U_1$ and $U_2$, then choose $M=\max(M_1, M_2)$ where $M_1$ and $M_2$ are chosen from each uniform convergence property, then clearly $|f_m(x)|<\epsilon$ for all $x\in U_1\cup U_2$. Apply the Local-to-Global Method on the property of uniformly convergence, we obtain the uniform convergence on $X$. \qed
+\\
+\begin{problem}
+Let $X$ be a compact Hausdorff space, and let $f$ be a continuous self-map on $X$. Then, there is a nonempty compact fixed set of $f$, that is, $f(S)=S$. Prove this by showing that $S:= \bigcap_{i=1}^{\infty} X_i$ is indeed such a set, where $X_1=f(X)$ and $X_i=f(X_{i-1})$ for each $i\geq 2$
+\end{problem}
+
+\textbf{Proof:} Indeed $S=\bigcap_{i=1}^\infty X_i$ is a fixed set of $f$, since $f(S)=f(\bigcap_{i=1}^\infty X_i)=\bigcap_{i=1}^{\infty}f(X_i)=\bigcap_{i=1}^\infty X_i=S$. Now we are left to prove that $S$ is nonempty and compact. Notice that $X_i$ are all closed and compact since they are image of compact sets under a Hausdorff space. First prove that for $\{X_i\}$ has finite intersection property: Suppose there exists a finite collection $\mathcal{B}=\{X_{i_j}\}_{j=1}^k\subseteq\{X_i\}$ such that $\bigcap\mathcal{B}=\emptyset$, then $\bigcap_{j=1}^{k}\{f^{-1}(X_{i_{i}})\}=\bigcap_{j=1}^{k}\{X_{i_{j}-1}\}=\emptyset$, continue this process for finitely many time, and finally we hit $X$ as the preimage of one element in $\mathcal{B}$, which contains all other $X_i$'s, then the intersection can no longer be $\emptyset$, that leads to a contradiction, so $\{X_i\}$ indeed has finite intersection property. By Proposition 1.1 from Chapter 7, $S$ is nonempty. $S$ is compact since $S$ is the infinite intersection of closed sets in a compact space. \qed
+\\
+\begin{problem}
+A topological space $X$ is said to be countably compact if we can extract a finite cover of $X$ from any given countable open cover of $X$. \\
+\indent a. Show that a topological space is compact iff it is Lindelöf and countably compact. \\
+\indent b. $\mathbb{R}$ is Lindelöf but not countably compact. \\
+\indent c. Let $X$ stand for the Sorgenfrey line. Show that $X$ is Lindelöf, but $X\times X$ is not. \\
+\indent d. Show that if $X$ and $Y$ are two topological spaces, one compact and the other Lindelöf, then $X\times Y$ is Lindelöf.
+\end{problem}
+
+\textbf{Proof:} a. If $X$ is compact, then for any open cover $\mathcal{O}$ of $X$, we can extract finitely (implies countably) many open sets that covers $X$, thus is Lindelöf, and countably compact is trivial. Conversely, Suppose $X$ is both Lindelöf and countably compact, then for any open cover $\mathcal{O}\subseteq\mathcal{O}_{X}$, there exists countable $\mathcal{U}\subseteq\mathcal{O}$ that still covers $X$, finally use countably compact property, we may extract finite subcover that covers $X$, hence compact. \\ 
+\indent b. $\mathbb{R}$ is not countably compact by consider open cover $\{(n/2, n/2+1)\}_{n\in\mathbb{Z}}$, if there exists a finite cover $\mathcal{B}$, then $\text{diam}(\mathcal{B})<\infty$, which cannot cover $\mathbb{R}$. Now, write $\mathbb{R}=\bigcup_{n\in\mathbb{Z}}[n, n+1]$, and consider any open cover $\mathcal{O}\subseteq\mathcal{O}_X$, define $\mathcal{O}_n:=\{O\in\mathcal{O}: O\cap [n,n+1]\neq\emptyset\}$, then clearly $\mathcal{O}_n$ is an open cover of $[n,n+1]$. By compactness of $[n,n+1]$ in $\mathbb{R}$, we can extract an finite subcover for $[n,n+1]$. Continue this process for all $[n,n+1]$, $n\in\mathbb{Z}$, we obtain countable collection of finite open cover, which up to taking union, is a countable subcover $\mathbb{R}$, thus is Lindelöf. \\
+\indent c. The fact that Sorgenfrey line is Lindelöf was proved in Homework 3 Problem 6.d. For $X\times X$, consider the closed subset $S=\{(x,-x): x\in X\}$ of $X\times X$. Claim that $S$ is a discrete subspace, indeed, for any $(x, -x)$ where $x\in X$, the open neighborhood $[x,x+1)\cup [-x,x+1)$ contains only $(x,-x)$, thus singleton is open in the subset, thus is discrete. However, $S$ is uncountable, the open cover $\{\{x\}: x\in X\}$ has no countable subcover, then $X\times X$ is not Lindelöf. \\
+\indent d. For any open cover $\mathcal{O}_1\times\mathcal{O}_2\in\mathcal{O}_X\times\mathcal{O}_Y$ of $X\times Y$, the projection on $X$ is an open cover of a compact set $X$, then there exists a finite subcover $\{O_{x_{i}}\}_{i=1}^k$. Now $\{O_{x_i}\}\times\mathcal{O}_2$ is a open cover of $X\times Y$. For each $O_{x_i}\times \mathcal{O}_2$, there exists countable open cover $\{O_{y_i}\}_{i=1}^\infty\subseteq\mathcal{O}_2$, then $\{O_{x_i}\}_{i=1}^{k}\times \{O_{y_i}\}_{i=1}^\infty$ is a countable open cover of $X\times Y$, hence is Lindelöf. \qed
+\\
+\begin{problem}
+Show that the closed unit ball of $C[0,1]$, that is $\{f\in C[0,1]: \|f\|_\infty\leq 1\}$ is closed and bounded, but not compact subset of $C[0,1]$. Thus, $C[0,1]$ does not have the Heine-Borel property.
+\end{problem}
+
+\textbf{Proof:} Since $(C[0,1], \|\cdot\|_\infty)$ is a metric space, $\{f\in C[0,1]: \|f\|_\infty\leq 1\}$ is indeed closed and bounded. Consider $\{x^n: x\in[0,1]\}$, then it converges pointwise to a non-continuous function, so there isn't any subsequence converging uniformly to element in $C[0,1]$, thus is not compact. \qed
+\\
+\begin{problem}
+Let $X$ be a metric space. \\
+\indent a. Show that if $X$ is compact, then it is separable. \\
+\indent b. We say that $X$ is $\sigma$-compact if $X$ can be written as the union of countably many compact subsets of it. Show that if $X$ is $\sigma$-compact, then it is separable.
+\end{problem}
+
+\textbf{Proof:} a. Consider the set $\{B(x, 1/m): x\in X\}_{m=1}^{\infty}$, then for each $m$, $\{B(x, 1/m): x\in X\}$ is a open cover of $X$, then there exists a finite open subcover $\{B(x_i, 1/m)\}_{i=1}^{k_m}$ that covers $X$, do this for any $m\in\mathbb{N}$, we obtain a countable open cover of $X$, namely $\bigcup_{m\in\mathbb{N}}\{B(x_i, 1/m)\}_{i=1}^{k_m}$ and the corresponding $S=\{x_{i}\}$, then for any $x\in X$, since for each $m\in\mathbb{N}$, $x$ is covered by a open ball of with radius $1/m$, thus we can find a sequence $\{x_{j_i}: x_{j_i}\in S\}$ that converges to $x$, hence $S$ is countable dense set and $X$ is separable. \\
+\indent b. For each compact subset $X_i$ of $X$, there exists a countable dense subset $S_i$, then $\bigcup_{i=1}^\infty S_i$ is a countable union of countable sets, which is countable, and since $\bigcup_{i=1}^\infty X_i=X$, $\bigcup_{i=1}^\infty S_i$ is countably dense in $X$, thus $X$ is separable. \qed
+\\
+\begin{problem}
+(An Alternative Version of the Stone-Weierstrass Theorem) Let $X$ be a compact Hausdorff space, and $\mathcal{F}$ is a subset of $C(X)$ such that for every distinct points $x$ and $y$ in $X$, there is an $f\in\mathcal{F}$ with $f(x)\neq f(y)$. (Such an $f$ is said to separate the points of $X$.) Suppose that (i) $af+g\in\mathcal{F}$ for all $f,h\in\mathcal{F}$ and $a\in\mathbb{R}$; (ii) $fg\in\mathcal{F}$ for all $f,g\in\mathcal{F}$; and (iii) all constant functions functions on $X$ belong to $\mathcal{F}$. Prove that $\mathcal{F}$ is dense in $C(X)$. 
+\end{problem}
+
+\textbf{Proof:} Given $x,y\in X$ that are distinct, we may choose $g\in\mathcal{F}$ such that $g(x)\neq g(y)$. Consider $f(z):=a\frac{g(z)-g(y)}{g(x)-g(y)}+b\frac{g(z)-g(x)}{g(y)-g(x)}$, then $f\in\mathcal{F}$ is continuous and satisfies two-points interpolation property. Now we claim that $|f|\in Cl(\mathcal{F})$ for any $f\in\mathcal{F}$. By Weierstrass approximation theorem, there exists polynomial $P(f(z))$ such that $\|P(f(z))-|f(z)|\|_\infty<\epsilon$ for any $\epsilon>0$, and since $f\in\mathcal{F}$ satisfies closure in addition, scalar multiplication and function multiplication, $P(f(z))\in\mathcal{F}$, then $|f|\in Cl(\mathcal{F})$. Notice that $\max(f,g)=\frac{1}{2}(f+g+|f-g|)\in Cl(\mathcal{F})$ and $\min(f, g)=\frac{1}{2}(f+g-|f-g|)\in Cl(\mathcal{F})$, then $Cl(\mathcal{F})$ is a sublattice. Finally by the Stone-Weierstrass Theorem introduced in class, $Cl(\mathcal{F})$ is dense in $C(X)$, which means $Cl(\mathcal{F})=C(X)$, and $\mathcal{F}$ is dense in $C(X)$. \qed
+\\
+\begin{problem}
+(Féjer's Approximation Theorem) For any positive integer $n$, a trigonometric polynomial on $\mathbb{R}$ of degree $n$ is self-map on $\mathbb{R}$ of the form 
+$$
+t\mapsto a_0+\sum\limits_{k=1}^{n}(a_k\cos(kt)+b_k\sin(kt))
+$$ where $a_0, b_0, \dots, a_n, b_n$ are real numbers with either $a_n\neq 0$ or $b_n\neq 0$. Let $\mathcal{P}$ be the set of all trigonometric polynomials on $\mathbb{R}$ of any degree, along with all constant self-maps on $\mathbb{R}$. Next, consider the following subspace of $C(\mathbb{R})$:
+$$
+C_{per}[0,1]:= \{f\in C(\mathbb{R}): f(x)=f(x+2k\pi)\text{ for all }x\in\mathbb{R}\text{ and }k\in\mathbb{N}\}.
+$$ Prove: $\mathcal{P}$ is dense in $C_{per}[0,1]$.
+\end{problem}
+\textbf{Proof:} Consider the map $g:\mathbb{R}\to\mathbb{S}^1$ as $t\mapsto (\cos t, \sin t)$, and we define the map $f_a: \mathbb{S}^1\to\mathbb{R}$ as $x\mapsto\langle a, x\rangle$ for $a\in\mathbb{R}^2$, then the original map can be rewritten as $a_0+\sum\limits_{k=1}^{n}f_{a_k}(g(kt))$. We only consider the part from $\mathbb{S}^1\to\mathbb{R}$, then the map can be simplified as $a_0+\sum\limits_{k=1}^n\langle a_k, x_k\rangle$. Clearly $\mathcal{P}$ is closed under addition and scalar multiplication, and for function multiplication, notice that if we have $\varphi=a_0+\sum\limits_{i=1}^k\langle a_i, x_i\rangle$ and $\psi=a_0'+\sum\limits_{i=1}^{k'}\langle a_{i}', x_i'\rangle$, then we shall have $\varphi\cdot\psi=a_0a_0'+a_{0}\sum\limits_{i=1}^{k'}\langle a_i', x_t'\rangle + a_0'\sum\limits_{i=1}^{k}\langle a_t, x_t\rangle + \sum\limits\langle\langle\cdot, \cdot\rangle, x_t\rangle\in\mathcal{P}$, given the fact that $\langle a,b\rangle\langle c, d\rangle=\langle \langle a,b\rangle c, d\rangle$. We are left to show that the map separates points in $\mathbb{S}^1$, indeed, for $x\neq y\in\mathbb{S}^1$, we can pick $b_1, b_2\in\mathbb{R}$ such that $\langle b_1, x\rangle\neq \langle b_2, y\rangle$ where left and right parts are both in $\mathcal{P}$. Finally by the previous exercise, since $\mathcal{P}$ is contained in $C_{per}[0,1]$, $\mathcal{P}$ is dense in $C_{per}[0,1]$. \qed
+\end{document}
